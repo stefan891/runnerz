@@ -2,6 +2,7 @@ package com.univr.runnerz;
 
 import com.univr.runnerz.run.Location;
 import com.univr.runnerz.run.Run;
+import com.univr.runnerz.run.RunRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -24,12 +25,15 @@ public class RunnerzApplication {
 
     }
 
-    @Bean
-    CommandLineRunner runner(){
-        return args -> {
-            Run run = new Run(1, "first Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
-            log.info("Run: " + run);
-        };
-    }
+    //CommandLineRunner is an interface that is a interface and we don-t need to create a class were it override the run function
+    //we can use a lambda function
+    //we can use it to insert some data in the application
+//    @Bean
+//    CommandLineRunner runner(RunRepository runRepository){
+//        return args -> {
+//            Run run = new Run(1, "first Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
+//            runRepository.create(run);
+//        };
+//    }
 
 }
