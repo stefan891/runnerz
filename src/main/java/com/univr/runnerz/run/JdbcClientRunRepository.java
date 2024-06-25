@@ -40,10 +40,10 @@ public class JdbcClientRunRepository {
     }
 
     public void update(Run run, Integer id){
-        var update = jdbcClient.sql("UPDATE run set title = ?, started_on= ?, completed_on=?, miles=?, location=? where id= ?")
-                .params(List.of(run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location(), id))
+        var updated = jdbcClient.sql("UPDATE run set title = ?, started_on= ?, completed_on=?, miles=?, location=?, version=? where id= ?")
+                .params(List.of(run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString(), run.version(), id))
                 .update();
-        Assert.state(update ==1 , "Failed to update run");
+        Assert.state(updated ==1 , "Failed to update run" + run.title());
     }
 
     public void delete(Integer id){
